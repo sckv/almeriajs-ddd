@@ -1,0 +1,3 @@
+CREATE DATABASE accounts;
+CREATE DATABASE products;
+CREATE DATABASE orders;

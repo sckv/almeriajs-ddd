@@ -1,14 +1,17 @@
 {
-  "name": "almeriajs-ddd",
+  "name": "base-repo",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "repository": "git@github.com:sckv/almeriajs-ddd.git",
+  "author": "Konstantin Knyazev <konstantinknyazev@outlook.com>",
+  "license": "MIT",
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
   }
 }

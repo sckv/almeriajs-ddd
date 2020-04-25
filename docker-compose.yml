@@ -1,0 +1,86 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:9.6
+    container_name: db
+    ports:
+      - "4005:4005"
+    volumes:
+      - ./_dbscript:/docker-entrypoint-initdb.d:delegated
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    networks:
+      - local
+
+  nats:
+    image: nats:latest
+    container_name: nats
+    ports:
+      - "4222:4222"
+    networks:
+      - local
+
+  accounting:
+    build: ./packages/accounts
+    container_name: accounts
+    ports:
+      - "3000:3000"
+    networks:
+      - local
+    volumes:
+      - ./packages/accounts:/usr/src/app:delegated
+    depends_on:
+      - db
+    command: "npm start"
+    env_file:
+      - ./.env
+
+  billing:
+    build: ./packages/billing
+    container_name: billing
+    ports:
+      - "3001:3000"
+    networks:
+      - local
+    volumes:
+      - ./packages/billing:/usr/src/app:delegated
+    command: "npm start"
+    env_file:
+      - ./.env
+
+  ordering:
+    build: ./packages/ordering
+    container_name: ordering
+    ports:
+      - "3002:3000"
+    networks:
+      - local
+    volumes:
+      - ./packages/ordering:/usr/src/app:delegated
+    depends_on:
+      - db
+    command: "npm start"
+    env_file:
+      - ./.env
+
+  graphql:
+    build: ./packages/graphql
+    container_name: graphql
+    ports:
+      - "3002:3000"
+    networks:
+      - local
+    volumes:
+      - ./packages/graphql:/usr/src/app:delegated
+    depends_on:
+      - accounting
+      - billing
+      - ordering
+    command: "npm start"
+    env_file:
+      - ./.env
+
+networks:
+  local:
+    driver: bridge

@@ -1,0 +1,68 @@
+module.exports = {
+  env: {
+    node: true,
+  },
+  root: true,
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint", "@typescript-eslint/tslint", "import"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+  ],
+  rules: {
+    "max-classes-per-file": ["error", 1],
+    "no-console": 0,
+    "no-new": 0,
+    "no-nested-ternary": 0,
+    "no-unused-vars": ["error", { varsIgnorePattern: "^_" }],
+    "no-underscore-dangle": 0,
+    "array-callback-return": 1,
+    "no-return-assign": 0,
+    "no-param-reassign": 0,
+    "global-require": 0,
+    // TS
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/generic-type-naming": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/prefer-namespace-keyword": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+    // IMPORT
+    "import/prefer-default-export": 0,
+    "import/no-dynamic-require": 0,
+    "import/named": 2,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
+    "import/no-unresolved": 0,
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        groups: [
+          "external",
+          "internal",
+          "index",
+          "sibling",
+          "parent",
+          "builtin",
+        ],
+      },
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
+  },
+};
