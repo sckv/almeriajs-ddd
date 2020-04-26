@@ -11,7 +11,7 @@ export class BalanceRelatedServiceRepository extends BalanceRelatedService {
     const client = await this.nats;
 
     client.publish(process.env.PAYMENT_CHARGE!, {
-      accountId: invoice.accountId,
+      email: invoice.email,
       price: invoice.totalPrice,
     });
 

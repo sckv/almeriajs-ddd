@@ -1,7 +1,7 @@
 exports.up = async (db) => {
   await db.schema.createTable('invoices', (t) => {
     t.uuid('id').primary();
-    t.uuid('account_id').references('id').inTable('accounts');
+    t.string('email').references('email').inTable('accounts');
     t.uuid('order_id');
     t.decimal('tax');
     t.decimal('price');

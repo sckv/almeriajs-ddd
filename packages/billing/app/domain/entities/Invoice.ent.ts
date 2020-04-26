@@ -1,4 +1,5 @@
 import uuid from 'uuid';
+import { Email } from '../value-objects/Email.vo';
 
 type WannabeInvoice = {
   id?: string;
@@ -8,7 +9,7 @@ type WannabeInvoice = {
   address: string;
   price: number;
   orderId: string;
-  accountId: string;
+  email: Email;
 };
 
 export class Invoice {
@@ -19,8 +20,8 @@ export class Invoice {
   get charged() {
     return this.invoice.charged as boolean;
   }
-  get accountId() {
-    return this.invoice.accountId;
+  get email() {
+    return this.invoice.email.value;
   }
 
   get totalPrice() {

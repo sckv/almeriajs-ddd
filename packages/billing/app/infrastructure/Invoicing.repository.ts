@@ -1,6 +1,7 @@
 import { InvoicingService } from '~app/domain/services/Invoicing.service';
 import { Invoice } from '~app/domain/entities/Invoice.ent';
 import Knex from 'knex';
+import { Email } from '~app/domain/value-objects/Email.vo';
 
 export class InvoicingServiceRepository extends InvoicingService {
   constructor(db: Knex) {
@@ -13,7 +14,7 @@ export class InvoicingServiceRepository extends InvoicingService {
       tax: invoice.tax,
       price: invoice.price,
       order_id: invoice.orderId,
-      account_id: invoice.accountId,
+      email: invoice.email,
       address: invoice.address,
     });
 
@@ -35,12 +36,21 @@ export class InvoicingServiceRepository extends InvoicingService {
     return { isPaid: true };
   }
 
-  async retrieveInvoices(accountId: string) {
-    const invoices = await this.db.table('invoice').select('*').where({ account_id: accountId });
+  async retrieveInvoices(email: Email) {
+    const invoices = await this.db.table('invoice').select('*').where({ email: email.value });
 
     return invoices.map(
-      ({ id, tax, price, order_id: orderId, account_id: accountId, address, paid, charged }) =>
-        new Invoice({ id, tax, price, orderId, accountId, address, paid, charged })
+      ({ id, tax, price, order_id: orderId, email, address, paid, charged }) =>
+        new Invoice({
+          id,
+          tax,
+          paid,
+          price,
+          orderId,
+          address,
+          charged,
+          email: Email.create(email) as Email,
+        })
     );
   }
 }
