@@ -25,7 +25,7 @@
     "strict": true,
     "allowUnusedLabels": true,
     "downlevelIteration": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": false,
@@ -35,6 +35,8 @@
     "strictBindCallApply": true,
     "allowSyntheticDefaultImports": true,
     "rootDirs": ["src/**/*"],
+    "sourceRoot": ".",
+    "baseUrl": ".",
     "incremental": false
   },
   "include": ["src/**/*"]
