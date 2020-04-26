@@ -15,6 +15,6 @@ Product.addResolver({
   name: 'getAll',
   type: () => [Product],
   resolve: ({ context }: any) => {
-    return context.http.products.getAll();
+    return context.dataSources.products.getProducts();
   },
 });

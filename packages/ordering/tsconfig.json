@@ -34,8 +34,8 @@
     "strictPropertyInitialization": true,
     "strictBindCallApply": true,
     "allowSyntheticDefaultImports": true,
-    "rootDirs": ["src/**/*"],
+    "rootDirs": ["app/**/*"],
     "incremental": false
   },
-  "include": ["src/**/*"]
+  "include": ["app/**/*"]
 }
