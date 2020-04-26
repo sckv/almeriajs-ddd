@@ -52,6 +52,33 @@ Order.addResolver({
     };
   },
 });
+const ProductInput = schemaComposer.createInputTC({
+  name: 'ProductInput',
+  fields: {
+    id: 'String!',
+    amount: 'Int!',
+  },
+});
+
+Order.addResolver({
+  kind: 'mutation',
+  name: 'placeOrder',
+  type: () => Order,
+  args: {
+    products: {
+      type: () => [ProductInput],
+    },
+    tax: 'Float!',
+    email: 'String!',
+  },
+  resolve: async ({ args, context }) => {
+    const order = context.dataSources.orders.placeOrder(args);
+    return {
+      ...order,
+      products: await getOrderProducts(order, context),
+    };
+  },
+});
 
 // AUX
 

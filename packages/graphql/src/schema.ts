@@ -1,5 +1,3 @@
-import './schema/Order';
-import './schema/Product';
 import './schema/Query';
 import './schema/Mutation';
 

@@ -5,7 +5,8 @@ interface Order {
     id: string;
     amount: number;
   }>;
-  sendMail: boolean;
+  tax: number;
+  email: string;
 }
 
 export class OrdersAPI extends RESTDataSource {
@@ -22,7 +23,7 @@ export class OrdersAPI extends RESTDataSource {
     return this.get('orders', { email });
   }
 
-  async makeOrder(order: Order) {
+  async placeOrder(order: Order) {
     return this.post('orders', order);
   }
 }

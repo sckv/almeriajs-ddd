@@ -11,7 +11,6 @@ export class ProductsAPI extends RESTDataSource {
   }
 
   async getProducts() {
-    const data = await this.get('products');
-    return data;
+    return this.get('products');
   }
 }
