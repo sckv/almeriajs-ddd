@@ -20,7 +20,20 @@ export class RetrieveInvoicesController {
     if (isDomainError(invoices)) {
       res.status(400).send(invoices.message);
     } else {
-      res.send(invoices);
+      //* EXTRACT TO MAPPER
+      const mapInvoices = invoices.map((i) => ({
+        id: i.id,
+        tax: i.tax,
+        paid: i.paid,
+        price: i.price,
+        totalPrice: i.totalPrice,
+        orderId: i.orderId,
+        address: i.address,
+        charged: i.charged,
+        email: i.email,
+      }));
+
+      res.send(mapInvoices);
     }
   }
 }
