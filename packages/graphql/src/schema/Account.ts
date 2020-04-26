@@ -3,7 +3,6 @@ import { schemaComposer } from 'graphql-compose';
 export const Account = schemaComposer.createObjectTC({
   name: 'Account',
   fields: {
-    id: 'String!',
     email: 'String!',
     balance: 'Int!',
   },
@@ -19,7 +18,7 @@ Account.addResolver({
   resolve: async ({ args, context }) => {
     const balance = await context.dataSources.accounts.getBalance(args.email);
     return {
-      ...balance,
+      balance,
       email: args.email,
     };
   },

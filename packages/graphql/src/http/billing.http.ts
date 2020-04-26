@@ -6,7 +6,7 @@ export class BillingAPI extends RESTDataSource {
     this.baseURL = process.env.BILLING_API_URL;
   }
 
-  async getInvoices(accountId: string) {
-    return this.get(`invoices/${accountId}`);
+  async getInvoices(email: string) {
+    return this.get(`invoices/${email}`);
   }
 }
