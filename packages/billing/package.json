@@ -1,7 +1,7 @@
 {
   "name": "billing",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app/entrypoint.ts",
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev --files -r tsconfig-paths/register app/entrypoint.ts"

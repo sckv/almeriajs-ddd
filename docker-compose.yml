@@ -25,7 +25,7 @@ services:
     build: ./packages/accounts
     container_name: accounts
     ports:
-      - '3000:3000'
+      - '3003:3000'
     networks:
       - local
     volumes:
@@ -68,7 +68,7 @@ services:
     build: ./packages/graphql
     container_name: graphql
     ports:
-      - '3003:3000'
+      - '3000:3000'
     networks:
       - local
     volumes:

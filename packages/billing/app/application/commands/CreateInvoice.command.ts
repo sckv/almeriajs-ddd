@@ -35,18 +35,19 @@ export class CreateInvoiceCommand {
     }
 
     const balanceCharge = await this.services.balance.paymentCharge(this.invoice);
-    if (!balanceCharge.isCharged) {
+    if (!balanceCharge.isEmitted) {
       return {
         isError: true,
-        message: 'Invoice balance charge is failed it is not charged',
+        message: 'Invoice balance charge emission failed it is not charged',
       };
     }
 
-    const invoiceCharge = await this.services.invoice.chargeInvoice(this.invoice.id);
+    const invoiceCharge = await this.services.invoice.setInvoiceCharged(this.invoice.id);
     if (!invoiceCharge.isCharged)
       return {
         isError: true,
-        message: 'Invoice charge is failed in the database, although it is charged correctly in the third party',
+        message:
+          'Invoice charge flag change is failed in the database, although Invoce been charged correctly in the third party',
       };
 
     return { invoiceCreated: true };

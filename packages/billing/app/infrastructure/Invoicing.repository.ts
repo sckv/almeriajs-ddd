@@ -21,7 +21,7 @@ export class InvoicingServiceRepository extends InvoicingService {
     return { isCreated: true };
   }
 
-  async chargeInvoice(invoiceId: string) {
+  async setInvoiceCharged(invoiceId: string) {
     await this.db.table('invoice').where({ id: invoiceId }).update({
       charged: true,
     });
@@ -37,7 +37,7 @@ export class InvoicingServiceRepository extends InvoicingService {
   }
 
   async retrieveInvoices(email: Email) {
-    const invoices = await this.db.table('invoice').select('*').where({ email: email.value });
+    const invoices = await this.db.table('invoice').select().where({ email: email.value });
 
     return invoices.map(
       ({ id, tax, price, order_id: orderId, email, address, paid, charged }) =>

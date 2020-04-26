@@ -65,6 +65,8 @@ Order.addResolver({
   name: 'placeOrder',
   type: () => Order,
   args: {
+    address: 'String!',
+    billingAddress: 'String',
     products: {
       type: () => [ProductInput],
     },

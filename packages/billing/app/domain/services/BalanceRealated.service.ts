@@ -3,5 +3,5 @@ import { Client } from 'ts-nats';
 
 export abstract class BalanceRelatedService {
   constructor(protected nats: Promise<Client>) {}
-  abstract async paymentCharge(invoice: Invoice): Promise<{ isCharged: boolean } | Error>;
+  abstract async paymentCharge(invoice: Invoice): Promise<{ isEmitted: boolean } | Error>;
 }

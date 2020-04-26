@@ -15,6 +15,6 @@ export class BalanceRelatedServiceRepository extends BalanceRelatedService {
       price: invoice.totalPrice,
     });
 
-    return { isCharged: true };
+    return { isEmitted: true };
   }
 }

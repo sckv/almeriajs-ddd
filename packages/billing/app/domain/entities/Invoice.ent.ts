@@ -63,4 +63,17 @@ export class Invoice {
     this.invoice.paid = false;
     return this;
   }
+
+  toJSON() {
+    return {
+      id: this.id,
+      tax: this.tax,
+      paid: this.paid,
+      charged: this.charged,
+      address: this.address,
+      price: this.price,
+      orderId: this.orderId,
+      email: this.email,
+    };
+  }
 }

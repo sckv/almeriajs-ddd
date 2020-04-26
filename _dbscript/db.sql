@@ -1,4 +1,3 @@
 CREATE DATABASE accounting;
 CREATE DATABASE products;
 CREATE DATABASE ordering;
-CREATE DATABASE common;
