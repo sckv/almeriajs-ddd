@@ -1,9 +1,9 @@
 {
   "name": "ordering",
-  "main": "app/entrypoint.ts",
+  "main": "entrypoint.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev --files -r tsconfig-paths/register app/entrypoint.ts"
+    "start": "ts-node-dev --files -r tsconfig-paths/register entrypoint.ts"
   },
   "dependencies": {
     "@types/compression": "^1.7.0",

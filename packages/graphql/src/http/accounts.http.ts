@@ -16,7 +16,7 @@ export class AccountsAPI extends RESTDataSource {
   }
 
   async getBalance(email: string) {
-    return this.get('balance', { email });
+    return this.get(`balance/${email}`);
   }
 
   // async addBalance(email: string, amount: number) {

@@ -44,5 +44,5 @@
       "~bootstrap/*": ["./bootstrap/*"]
     }
   },
-  "include": ["app", "external", "bootstrap"]
+  "include": ["app", "external", "bootstrap", "entrypoint.ts"]
 }
