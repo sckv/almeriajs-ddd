@@ -21,6 +21,7 @@ export class Product {
   get name() {
     return this.product.name;
   }
+
   constructor(private product: WannabeProduct) {}
 
   setAmount(amount: number) {

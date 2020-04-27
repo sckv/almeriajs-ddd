@@ -14,4 +14,10 @@ export class Email {
     if (!validator.isEmail(email)) return false;
     return new Email(email);
   }
+
+  toJSON() {
+    return {
+      email: this.email,
+    };
+  }
 }

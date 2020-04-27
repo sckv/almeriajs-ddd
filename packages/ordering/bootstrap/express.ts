@@ -1,7 +1,8 @@
-// import { ex } from '~external/express';
-// import { retrieveInvoiceController } from './bootstrap';
+import { ex } from '~external/express';
+import { retrieveOrdersController, placeOrderController, getSingleOrderController } from './bootstrap';
 
 // ASSOC ROUTES
-// ex.route('invoices/:email').get(retrieveInvoiceController.handle);
+ex.route('orders').get(retrieveOrdersController.handle).post(placeOrderController.handle);
+ex.route('orders/:id').get(getSingleOrderController.handle);
 
 console.log('Express routes bootstrapped!');

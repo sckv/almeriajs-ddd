@@ -1,28 +1,27 @@
 import { OrderManagementServiceRepository } from '~app/infrastructure/OrderManagement.repository';
-import { Email } from '~app/domain/value-objects/Email.vo';
 
 interface Services {
   orderManagement: OrderManagementServiceRepository;
 }
 
-export class RetrieveOrdersQuery {
+export class GetSingleOrderQuery {
   private __uniq: void;
-  private email: Email | undefined;
+  private orderId: string | undefined;
 
   constructor(private services: Services) {}
 
-  init(email: Email) {
-    this.email = email;
+  init(orderId: string) {
+    this.orderId = orderId;
     return this;
   }
 
   async execute() {
-    if (!this.email)
+    if (!this.orderId)
       return {
         isError: true,
-        message: `Command ${this.constructor.name} is not initialized`,
+        message: `Query ${this.constructor.name} is not initialized`,
       };
 
-    return this.services.orderManagement.getAll(this.email);
+    return this.services.orderManagement.getOne(this.orderId);
   }
 }

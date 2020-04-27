@@ -1,6 +1,6 @@
 interface WannabeOrderItem {
   productId: string;
-  price: number;
+  price?: number;
   amount: number;
 }
 
@@ -18,6 +18,11 @@ export class OrderItem {
   }
 
   private constructor(private orderItem: WannabeOrderItem) {}
+
+  setPrice(price: number) {
+    this.orderItem.price = price;
+    return this;
+  }
 
   static create(orderItem: WannabeOrderItem) {
     // ... validations

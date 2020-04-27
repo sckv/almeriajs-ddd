@@ -7,14 +7,10 @@ export const Order = schemaComposer.createObjectTC({
   name: 'Order',
   fields: {
     id: 'String!',
+    email: 'String!',
+    address: 'String!',
     products: {
       type: () => [Product],
-    },
-    totalPrice: {
-      type: 'Int!',
-      resolve: (source: any) => {
-        return source.products.reduce((acc: any, curr: any) => acc + curr.price * curr.amount, 0);
-      },
     },
   },
 });
@@ -52,6 +48,7 @@ Order.addResolver({
     };
   },
 });
+
 const ProductInput = schemaComposer.createInputTC({
   name: 'ProductInput',
   fields: {

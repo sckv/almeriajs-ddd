@@ -5,16 +5,16 @@ export class Fetcher {
     Object.freeze(this);
   }
 
-  static async get(url: string, searchParams?: { [key: string]: number | string }) {
-    return got.get(url, { searchParams });
+  get<T extends any>(url: string, searchParams?: { [key: string]: number | string }) {
+    return got.get<T>(url, { responseType: 'json', searchParams });
   }
-  static async post(url: string, body: { [key: string]: number | string } = {}) {
-    return got.post(url, { body: JSON.stringify(body) });
+  post<T extends any>(url: string, body: { [key: string]: number | string } = {}) {
+    return got.post<T>(url, { responseType: 'json', body: JSON.stringify(body) });
   }
-  static async delete(url: string, searchParams?: { [key: string]: number | string }) {
-    return got.delete(url, { searchParams });
+  delete<T extends any>(url: string, searchParams?: { [key: string]: number | string }) {
+    return got.delete<T>(url, { responseType: 'json', searchParams });
   }
-  static async patch(url: string, body: { [key: string]: number | string } = {}) {
-    return got.patch(url, { body: JSON.stringify(body) });
+  patch<T extends any>(url: string, body: { [key: string]: number | string } = {}) {
+    return got.patch<T>(url, { responseType: 'json', body: JSON.stringify(body) });
   }
 }

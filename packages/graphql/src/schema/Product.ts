@@ -5,7 +5,7 @@ export const Product = schemaComposer.createObjectTC({
   fields: {
     id: 'String!',
     name: 'String!',
-    price: 'Int!',
+    price: 'Int',
     amount: 'Int!',
   },
 });
