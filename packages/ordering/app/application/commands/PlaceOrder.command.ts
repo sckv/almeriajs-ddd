@@ -5,8 +5,6 @@ import { OrderManagementServiceRepository } from '~app/infrastructure/OrderManag
 import { OrderProductsOperationsServiceRepository } from '~app/infrastructure/OrderProducts.repository';
 import { DataForInvoice } from '~app/domain/value-objects/InvoiceData.ent';
 
-const pa = Promise.all;
-
 interface Services {
   orderProductsOperations: OrderProductsOperationsServiceRepository;
   invoicing: InvoicingServiceRepository;
@@ -38,12 +36,13 @@ export class PlaceOrderCommand {
         message: `Command ${this.constructor.name} is not initialized`,
       };
 
-    const orderItemsWithPrice = await pa(
-      this.orderItems.map(async (orderItem) => {
-        const productData = await this.services.orderProductsOperations.getProduct(orderItem.productId);
-        return orderItem.setPrice(productData.price!);
-      })
-    );
+    const orderItemsPriced = this.orderItems.map(async (orderItem) => {
+      const productData = await this.services.orderProductsOperations.getProduct(orderItem.productId);
+      orderItem.setPrice(productData.price!);
+      return productData;
+    });
+
+    const orderItemsWithPrice = await Promise.all(orderItemsPriced);
     this.order.setOrderItems(orderItemsWithPrice);
 
     const orderPlacement = await this.services.orderManagement.createOrder(this.order);

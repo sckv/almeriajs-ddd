@@ -1,2 +1,2 @@
-import '~external/db/migrate';
+// import '~external/db/migrate';
 import '~bootstrap/start';

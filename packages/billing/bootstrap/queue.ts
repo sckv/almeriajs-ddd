@@ -6,8 +6,8 @@ const bootstrapNats = async () => {
   const client = (await nats) as Client;
 
   // ASSOC LISTENERS
-  client.subscribe(process.env.INVOICE_CREATE!, createInvoiceHandler.handle);
-  client.subscribe(process.env.INVOICE_PAY!, payInvoiceHandler.handle);
+  client.subscribe(process.env.INVOICE_CREATE!, createInvoiceHandler.handle.bind(createInvoiceHandler));
+  client.subscribe(process.env.INVOICE_PAY!, payInvoiceHandler.handle.bind(payInvoiceHandler));
 };
 
 bootstrapNats().then(() => console.log('Nats listeners bootstrapped!'));

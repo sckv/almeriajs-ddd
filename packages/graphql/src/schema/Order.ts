@@ -1,8 +1,6 @@
 import { schemaComposer } from 'graphql-compose';
 import { Product } from './Product';
 
-const pa = Promise.all;
-
 export const Order = schemaComposer.createObjectTC({
   name: 'Order',
   fields: {
@@ -29,7 +27,7 @@ Order.addResolver({
       return getOrderProducts(order, context);
     });
 
-    return pa(ordersWithProducts);
+    return Promise.all(ordersWithProducts);
   },
 });
 
@@ -41,11 +39,8 @@ Order.addResolver({
     id: 'String',
   },
   resolve: async ({ args, context }) => {
-    const order = context.dataSources.orders.getOrder(args.id);
-    return {
-      ...order,
-      products: await getOrderProducts(order, context),
-    };
+    const order = await context.dataSources.orders.getOrder(args.id);
+    return await getOrderProducts(order, context);
   },
 });
 
@@ -71,11 +66,9 @@ Order.addResolver({
     email: 'String!',
   },
   resolve: async ({ args, context }) => {
-    const order = context.dataSources.orders.placeOrder(args);
-    return {
-      ...order,
-      products: await getOrderProducts(order, context),
-    };
+    const order = await context.dataSources.orders.placeOrder(args);
+
+    return await getOrderProducts(order, context);
   },
 });
 
@@ -84,12 +77,12 @@ Order.addResolver({
 const getOrderProducts = async (order, context) => {
   return {
     ...order,
-    products: await pa(
-      order.products.map(async (product) => {
-        const productDetails = await context.dataSources.products.getProduct(product.id);
+    products: await Promise.all(
+      order.orderItems.map(async (product) => {
+        const productDetails = await context.dataSources.products.getProduct(product.productId);
         return {
-          ...product,
           ...productDetails,
+          ...product,
         };
       })
     ),

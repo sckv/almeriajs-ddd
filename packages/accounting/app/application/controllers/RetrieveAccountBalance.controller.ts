@@ -19,7 +19,7 @@ export class RetrieveAccountBalanceController {
     if (isDomainError(balance)) {
       res.status(400).send(balance.message);
     } else {
-      res.send(balance);
+      res.json(balance);
     }
   }
 }

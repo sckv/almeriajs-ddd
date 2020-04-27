@@ -13,6 +13,7 @@ export class BalanceRelatedServiceRepository extends BalanceRelatedService {
     client.publish(process.env.PAYMENT_CHARGE!, {
       email: invoice.email,
       amount: invoice.totalPrice,
+      orderId: invoice.orderId,
     });
 
     return { isEmitted: true };

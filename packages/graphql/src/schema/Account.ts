@@ -4,7 +4,7 @@ export const Account = schemaComposer.createObjectTC({
   name: 'Account',
   fields: {
     email: 'String!',
-    balance: 'Int!',
+    balance: 'Float!',
   },
 });
 

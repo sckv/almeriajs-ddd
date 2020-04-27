@@ -8,17 +8,17 @@ export class ProductsManagementServiceRepository extends ProductsManagementServi
   }
 
   async getOneProduct(productId: string) {
-    const fromDb = await this.database('products').where({ id: productId }).select().first();
+    const fromDb = await this.database('product').where({ id: productId }).select().first();
     return new Product(fromDb);
   }
 
   async getAllProducts() {
-    const productsFromDb = await this.database('products').select();
+    const productsFromDb = await this.database('product').select();
     return productsFromDb.map((p) => new Product(p));
   }
 
   async updateProduct(product: Product) {
-    await this.database('products').where({ id: product.id }).update({
+    await this.database('product').where({ id: product.id }).update({
       id: product.id,
       amount: product.amount,
       price: product.price,

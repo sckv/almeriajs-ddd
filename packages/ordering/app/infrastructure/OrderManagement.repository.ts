@@ -4,8 +4,6 @@ import { Order } from '~app/domain/entities/Order.ent';
 import { OrderItem } from '~app/domain/value-objects/OrderItem.vo';
 import { Email } from '~app/domain/value-objects/Email.vo';
 
-const pa = Promise.all;
-
 export class OrderManagementServiceRepository extends OrderManagementService {
   constructor(database: Knex) {
     super(database);
@@ -27,7 +25,7 @@ export class OrderManagementServiceRepository extends OrderManagementService {
       });
     });
 
-    await pa(orderItemsBattery);
+    await Promise.all(orderItemsBattery);
 
     return { isCreated: true };
   }
@@ -35,11 +33,13 @@ export class OrderManagementServiceRepository extends OrderManagementService {
   async getAll(email: Email) {
     const ordersFromDb = await this.database('order').select().where({ email: email.value });
 
-    const orders = await pa(
+    const orders = await Promise.all(
       ordersFromDb.map(async (crudeOrder) => {
         const order = new Order(crudeOrder);
-        const orderItemCrude = await this.database('order_item').where({ order_id: crudeOrder.id }).select();
 
+        const orderItemCrude = await this.database('order_item')
+          .where({ order_id: crudeOrder.id })
+          .select('product_id as productId', 'price', 'amount');
         const parsedOrderItems = orderItemCrude.map((oic) => OrderItem.create(oic));
 
         order.setOrderItems(parsedOrderItems);
@@ -59,7 +59,9 @@ export class OrderManagementServiceRepository extends OrderManagementService {
     const order = new Order(orderFromDb);
     order.setOrderEmail(parsedEmail);
 
-    const orderItemCrude = await this.database('order_item').where({ order_id: order.id }).select();
+    const orderItemCrude = await this.database('order_item')
+      .where({ order_id: order.id })
+      .select('product_id as productId', 'price', 'amount');
     const parsedOrderItems = orderItemCrude.map((oic) => OrderItem.create(oic));
 
     order.setOrderItems(parsedOrderItems);

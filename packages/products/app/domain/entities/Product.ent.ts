@@ -11,7 +11,7 @@ export class Product {
   }
 
   get price() {
-    return this.product.price;
+    return +this.product.price;
   }
 
   get id() {
@@ -32,9 +32,9 @@ export class Product {
   private toJSON() {
     return {
       id: this.id,
-      price: this.price,
-      amount: this.amount,
       name: this.name,
+      price: +this.price,
+      amount: this.amount,
     };
   }
 }

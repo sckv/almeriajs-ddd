@@ -7,23 +7,23 @@ interface Services {
 export class PayInvoiceCommand {
   private __uniq: void;
 
-  private invoiceId: string | undefined;
+  private orderId: string | undefined;
 
   constructor(private services: Services) {}
 
-  init(invoiceId: string) {
-    this.invoiceId = invoiceId;
+  init(orderId: string) {
+    this.orderId = orderId;
     return this;
   }
 
   async execute() {
-    if (!this.invoiceId)
+    if (!this.orderId)
       return {
         isError: true,
         message: `Command ${this.constructor.name} is not initialized`,
       };
 
-    const invoiceDb = await this.services.invoice.payInvoice(this.invoiceId);
+    const invoiceDb = await this.services.invoice.payInvoice(this.orderId);
     if (!invoiceDb.isPaid) {
       return {
         isError: true,

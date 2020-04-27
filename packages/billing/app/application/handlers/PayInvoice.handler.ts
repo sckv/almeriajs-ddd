@@ -9,9 +9,9 @@ export class PayInvoiceHandler {
   constructor(private deps: Deps) {}
 
   async handle(_err: any, message: Msg) {
-    const { invoiceId } = message.data;
+    const { orderId } = message.data;
 
-    const invoicePayment = await this.deps.payInvoice.init(invoiceId).execute();
+    const invoicePayment = await this.deps.payInvoice.init(orderId).execute();
 
     if (invoicePayment.isError) console.error(invoicePayment);
     else console.log('Invoice paid');

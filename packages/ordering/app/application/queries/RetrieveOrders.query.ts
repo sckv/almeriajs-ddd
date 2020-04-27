@@ -22,6 +22,7 @@ export class RetrieveOrdersQuery {
         isError: true,
         message: `Command ${this.constructor.name} is not initialized`,
       };
+    console.log('gettings orders');
 
     return this.services.orderManagement.getAll(this.email);
   }

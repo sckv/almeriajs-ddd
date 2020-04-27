@@ -23,7 +23,11 @@ export class OrderProductsOperationsServiceRepository extends OrderProductsOpera
   }
 
   async getProduct(productId: string) {
-    const productData = await this.http.get<any>(`${process.env.PRODUCTS_API_URL}/products/${productId}`);
-    return OrderItem.create(productData.body);
+    const { body } = await this.http.get<any>(`${process.env.PRODUCTS_API_URL}/products/${productId}`);
+    return OrderItem.create({
+      amount: body.amount,
+      productId: body.id,
+      price: body.price,
+    });
   }
 }

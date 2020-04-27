@@ -12,7 +12,7 @@ interface Order {
 export class OrdersAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = process.env.ORDERS_API_URL;
+    this.baseURL = process.env.ORDERING_API_URL;
   }
 
   async getOrder(id: string) {

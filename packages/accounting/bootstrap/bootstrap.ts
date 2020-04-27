@@ -6,8 +6,11 @@ import { AccountManagementServiceRepository } from '~app/infrastructure/AccountM
 import { database } from '~external/db';
 import { RetrieveAccountBalanceQuery } from '~app/application/queries/RetrieveAccountBalance.query';
 import { ChargePaymentCommand } from '~app/application/commands/ChargePayment.command';
+import { InvoicingServiceRepository } from '~app/infrastructure/Invoicing.repository';
+import { nats } from '~external/nats';
 
 const accountManagement = new AccountManagementServiceRepository(database);
+const invoicing = new InvoicingServiceRepository(nats);
 
 export const createAccountController = new CreateAccountController({
   createAccount: new CreateAccountCommand({ accountManagement }),
@@ -16,5 +19,5 @@ export const retrieveAccountBalanceController = new RetrieveAccountBalanceContro
   retrieveAccountBalance: new RetrieveAccountBalanceQuery({ accountManagement }),
 });
 export const chargePaymentHandler = new ChargePaymentHandler({
-  chargePayment: new ChargePaymentCommand({ accountManagement }),
+  chargePayment: new ChargePaymentCommand({ accountManagement, invoicing }),
 });

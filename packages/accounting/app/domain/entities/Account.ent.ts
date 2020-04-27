@@ -16,7 +16,7 @@ export class Account {
   }
 
   get balance() {
-    return this.account.balance!;
+    return +this.account.balance!;
   }
 
   constructor(private account: WannabeAccount) {
@@ -36,9 +36,9 @@ export class Account {
 
   toJSON() {
     return {
-      balance: this.account.balance,
-      password: this.account.password,
-      email: this.account.email,
+      balance: +this.balance,
+      password: this.password,
+      email: this.email,
     };
   }
 }

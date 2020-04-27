@@ -28,8 +28,8 @@ export class InvoicingServiceRepository extends InvoicingService {
     return { isCharged: true };
   }
 
-  async payInvoice(invoiceId: string) {
-    await this.db.table('invoice').where({ id: invoiceId }).update({
+  async payInvoice(orderId: string) {
+    await this.db.table('invoice').where({ order_id: orderId }).update({
       paid: true,
     });
 

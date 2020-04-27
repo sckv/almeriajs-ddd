@@ -1,10 +1,10 @@
 version: '3.7'
 services:
   db:
-    image: postgres:9.6
+    image: postgres:11.7
     container_name: db
     ports:
-      - '4005:4005'
+      - '4005:5432'
     volumes:
       - ./_dbscript:/docker-entrypoint-initdb.d:delegated
     environment:
@@ -22,14 +22,14 @@ services:
       - local
 
   accounting:
-    build: ./packages/accounts
-    container_name: accounts
+    build: ./packages/accounting
+    container_name: accounting
     ports:
       - '3003:3000'
     networks:
       - local
     volumes:
-      - ./packages/accounts:/usr/src/app:delegated
+      - ./packages/accounting:/usr/src/app:delegated
     depends_on:
       - db
     command: 'npm start'
@@ -58,6 +58,21 @@ services:
       - local
     volumes:
       - ./packages/ordering:/usr/src/app:delegated
+    depends_on:
+      - db
+    command: 'npm start'
+    env_file:
+      - ./.env
+
+  products:
+    build: ./packages/products
+    container_name: products
+    ports:
+      - '3004:3000'
+    networks:
+      - local
+    volumes:
+      - ./packages/products:/usr/src/app:delegated
     depends_on:
       - db
     command: 'npm start'

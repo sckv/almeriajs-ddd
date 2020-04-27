@@ -5,6 +5,7 @@ import { Order } from '~app/domain/entities/Order.ent';
 import { OrderItem } from '~app/domain/value-objects/OrderItem.vo';
 import { DataForInvoice } from '~app/domain/value-objects/InvoiceData.ent';
 import { isDomainError } from '~app/tools';
+import { Email } from '~app/domain/value-objects/Email.vo';
 
 interface Deps {
   placeOrderCommand: PlaceOrderCommand;
@@ -16,9 +17,16 @@ export class PlaceOrderController {
   async handle(req: e.Request, res: e.Response) {
     const { address, billingAddress, products, tax, email } = req.body;
 
-    const orderItems = products.map((product: any) => OrderItem.create(product)) as OrderItem[];
-    const order = new Order({ address, orderItems, email });
-    const toInvoice = new DataForInvoice({ tax, email, orderId: order.id });
+    const parsedEmail = Email.create(email);
+    if (!parsedEmail) {
+      return res.status(412).send('Incorrect email for order placement');
+    }
+    const orderItems = products.map((product: any) =>
+      OrderItem.create({ amount: product.amount, productId: product.id })
+    ) as OrderItem[];
+
+    const order = new Order({ address, orderItems, email: parsedEmail });
+    const toInvoice = new DataForInvoice({ tax, email: parsedEmail, orderId: order.id });
 
     const orderPlacement = await this.deps.placeOrderCommand
       .init(order, orderItems, toInvoice, billingAddress)

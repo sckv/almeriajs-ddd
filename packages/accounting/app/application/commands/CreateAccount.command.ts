@@ -31,6 +31,6 @@ export class CreateAccountCommand {
         message: `Account ${this.account} is not created`,
       };
     }
-    return { isCreated: true };
+    return this.account;
   }
 }

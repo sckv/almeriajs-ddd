@@ -9,17 +9,28 @@ export class AccountManagementServiceRepository extends AccountManagementService
   }
 
   async createAccount(account: Account) {
-    await this.database('account').insert(account);
+    await this.database('account').insert({
+      email: account.email,
+      password: account.password,
+      balance: account.balance,
+    });
     return { isCreated: true };
   }
 
   async updateAccount(account: Account) {
-    await this.database('account').where({ email: account.email }).insert(account);
+    await this.database('account').where({ email: account.email }).update({
+      balance: account.balance,
+    });
     return { isUpdated: true };
   }
 
   async getAccount(email: Email) {
-    const accountFromDb = await this.database('account').where({ email: email.value }).select('email, balance').first();
-    return new Account(accountFromDb);
+    const accountFromDb = await this.database('account')
+      .where({ email: email.value })
+      .select('email', 'balance')
+      .first();
+    const emailParsed = Email.create(accountFromDb.email) as Email;
+
+    return new Account({ email: emailParsed, balance: accountFromDb.balance });
   }
 }

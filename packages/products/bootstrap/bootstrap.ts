@@ -13,17 +13,16 @@ import { ProductsManagementServiceRepository } from '~app/infrastructure/Product
 import { database } from '~external/db';
 
 // BOOTSTRAP SERVICES
-const productsManagementService = new ProductsManagementServiceRepository(database);
+const productsManagement = new ProductsManagementServiceRepository(database);
+
+// BOOTSTRAP QUERIES & COMMANDS
+const getSingleProduct = new GetSingleProductQuery({ productsManagement });
+const retrieveProducts = new RetrieveProductsQuery({ productsManagement });
+const updateProductsStock = new UpdateProductsStockCommand({ productsManagement });
 
 // BOOTSTRAP CONTROLLERS & HANDLERS
-const getSingleProductController = new GetSingleProductController({
-  getSingleProduct: new GetSingleProductQuery({ productsManagement: productsManagementService }),
-});
-const retrieveProductsController = new RetrieveProductsController({
-  retrieveProducts: new RetrieveProductsQuery({ productsManagement: productsManagementService }),
-});
-const updateProductsStockHandler = new UpdateProductsStockHandler({
-  updateProductsStock: new UpdateProductsStockCommand({ productsManagement: productsManagementService }),
-});
+const getSingleProductController = new GetSingleProductController({ getSingleProduct });
+const retrieveProductsController = new RetrieveProductsController({ retrieveProducts });
+const updateProductsStockHandler = new UpdateProductsStockHandler({ updateProductsStock });
 
 export { getSingleProductController, retrieveProductsController, updateProductsStockHandler };

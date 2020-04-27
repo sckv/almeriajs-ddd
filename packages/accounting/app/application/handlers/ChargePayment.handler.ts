@@ -10,7 +10,7 @@ export class ChargePaymentHandler {
   constructor(private deps: Deps) {}
 
   async handle(_err: any, message: Msg) {
-    const { amount, email } = message.data;
+    const { amount, email, orderId } = message.data;
 
     const parseEmail = Email.create(email);
     if (!parseEmail) {
@@ -18,7 +18,8 @@ export class ChargePaymentHandler {
       return;
     }
 
-    const accountPaymentCharge = await this.deps.chargePayment.init(amount, parseEmail).execute();
+    const accountPaymentCharge = await this.deps.chargePayment.init(amount, parseEmail, orderId).execute();
+
     if (accountPaymentCharge.isError) console.error(accountPaymentCharge.message);
     else console.log(`Account  with email ${email} has been charged with the amount of ${amount}`);
   }

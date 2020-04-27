@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 import { Email } from '../value-objects/Email.vo';
 
 type WannabeInvoice = {
@@ -25,11 +25,11 @@ export class Invoice {
   }
 
   get totalPrice() {
-    return (this.invoice.tax / 100) * this.invoice.price;
+    return (this.invoice.tax / 100 + 1) * this.invoice.price;
   }
 
   get price() {
-    return this.invoice.price;
+    return +this.invoice.price;
   }
 
   get id() {
@@ -37,7 +37,7 @@ export class Invoice {
   }
 
   get tax() {
-    return this.invoice.tax;
+    return +this.invoice.tax;
   }
 
   get paid() {
@@ -52,6 +52,11 @@ export class Invoice {
     if (!invoice.id) invoice.id = uuid.v1();
     this.invoice.paid = false;
     this.invoice = invoice;
+  }
+
+  setEmail(email: Email) {
+    this.invoice.email = email;
+    return this;
   }
 
   setPaid() {

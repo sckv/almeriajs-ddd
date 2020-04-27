@@ -5,9 +5,9 @@ export const Billing = schemaComposer.createObjectTC({
   fields: {
     email: 'String!',
     id: 'String!',
-    tax: 'Int!',
+    tax: 'Float!',
     paid: 'Boolean!',
-    price: 'Int!',
+    price: 'Float!',
     orderId: 'String!',
     address: 'String!',
     charged: 'Boolean!',

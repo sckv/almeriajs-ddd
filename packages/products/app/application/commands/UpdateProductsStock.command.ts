@@ -1,7 +1,5 @@
 import { ProductsManagementServiceRepository } from '~app/infrastructure/ProductsManagement.repository';
 
-const pa = Promise.all;
-
 interface Services {
   productsManagement: ProductsManagementServiceRepository;
 }
@@ -25,7 +23,7 @@ export class UpdateProductsStockCommand {
         message: `Command ${this.constructor.name} is not initialized`,
       };
 
-    const products = await pa(
+    const products = await Promise.all(
       this.productIds.map(async ({ id, minus }) => {
         const item = await this.services.productsManagement.getOneProduct(id);
         const newAmount = item.amount - minus;
@@ -36,7 +34,7 @@ export class UpdateProductsStockCommand {
     );
 
     //? CHECK IF IT CAN BE INHERITED
-    await pa(products.map((product) => this.services.productsManagement.updateProduct(product)));
+    await Promise.all(products.map((product) => this.services.productsManagement.updateProduct(product)));
 
     return { stockUpdated: true };
   }
