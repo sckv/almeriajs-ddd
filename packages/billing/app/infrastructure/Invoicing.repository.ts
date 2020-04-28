@@ -1,6 +1,7 @@
+import Knex from 'knex';
+
 import { InvoicingService } from '~app/domain/services/Invoicing.service';
 import { Invoice } from '~app/domain/entities/Invoice.ent';
-import Knex from 'knex';
 import { Email } from '~app/domain/value-objects/Email.vo';
 
 export class InvoicingServiceRepository extends InvoicingService {

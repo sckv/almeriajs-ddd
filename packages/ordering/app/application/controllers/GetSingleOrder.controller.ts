@@ -1,7 +1,8 @@
 import e from 'express';
 
-import { isDomainError } from '~app/tools';
 import { GetSingleOrderQuery } from '../queries/GetSingleOrder.query';
+
+import { isDomainError } from '~app/tools';
 
 interface Deps {
   getSingleOrderQuery: GetSingleOrderQuery;

@@ -1,4 +1,5 @@
 import { Msg } from 'ts-nats';
+
 import { UpdateProductsStockCommand } from '../commands/UpdateProductsStock.command';
 
 interface Deps {

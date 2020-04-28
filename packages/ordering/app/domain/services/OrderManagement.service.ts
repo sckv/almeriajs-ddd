@@ -1,4 +1,5 @@
 import Knex from 'knex';
+
 import { Order } from '../entities/Order.ent';
 import { Email } from '../value-objects/Email.vo';
 

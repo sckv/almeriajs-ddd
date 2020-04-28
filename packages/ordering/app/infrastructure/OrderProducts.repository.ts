@@ -1,4 +1,5 @@
 import { Client } from 'ts-nats';
+
 import { Fetcher } from '~external/http';
 import { OrderItem } from '~app/domain/value-objects/OrderItem.vo';
 import { OrderProductsOperationsService } from '~app/domain/services/OrderProductsOperations.service';

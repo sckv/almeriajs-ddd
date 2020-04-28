@@ -1,4 +1,5 @@
 import * as uuid from 'uuid';
+
 import { Email } from '../value-objects/Email.vo';
 
 type WannabeInvoice = {

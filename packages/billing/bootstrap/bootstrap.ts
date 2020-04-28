@@ -1,17 +1,14 @@
 // REPOSITORIES
 import { InvoicingServiceRepository } from '~app/infrastructure/Invoicing.repository';
 import { BalanceRelatedServiceRepository } from '~app/infrastructure/BalanceRelated.repository';
-
 // HANDLERS & CONTROLLERS
 import { CreateInvoiceHandler } from '~app/application/handlers/CreateInvoice.handler';
 import { PayInvoiceHandler } from '~app/application/handlers/PayInvoice.handler';
 import { RetrieveInvoicesController } from '~app/application/controllers/RetrieveInvoices.controller';
-
 // COMMANDS & QUERIES
 import { PayInvoiceCommand } from '~app/application/commands/PayInvoice.command';
 import { CreateInvoiceCommand } from '~app/application/commands/CreateInvoice.command';
 import { RetrieveInvoicesQuery } from '~app/application/queries/RetrieveInvoices.query';
-
 // EXTERNALS
 import { database } from '~external/db';
 import { nats } from '~external/nats';

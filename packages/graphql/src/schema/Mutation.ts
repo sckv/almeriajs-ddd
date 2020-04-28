@@ -1,4 +1,5 @@
 import { schemaComposer } from 'graphql-compose';
+
 import { Account } from './Account';
 import { Order } from './Order';
 

@@ -1,4 +1,5 @@
 import * as uuid from 'uuid';
+
 import { OrderItem } from '../value-objects/OrderItem.vo';
 import { Email } from '../value-objects/Email.vo';
 

@@ -1,5 +1,6 @@
-import { Product } from '../entities/Product.ent';
 import Knex from 'knex';
+
+import { Product } from '../entities/Product.ent';
 
 export abstract class ProductsManagementService {
   constructor(protected database: Knex) {}

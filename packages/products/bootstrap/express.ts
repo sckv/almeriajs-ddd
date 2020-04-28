@@ -1,5 +1,6 @@
-import { ex } from '~external/express';
 import { retrieveProductsController, getSingleProductController } from './bootstrap';
+
+import { ex } from '~external/express';
 
 //ASSOC ROUTES
 ex.get('/products', retrieveProductsController.handle.bind(retrieveProductsController));

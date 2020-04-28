@@ -1,5 +1,6 @@
-import { ex } from '~external/express';
 import { retrieveAccountBalanceController, createAccountController } from './bootstrap';
+
+import { ex } from '~external/express';
 
 // ASSOC ROUTES
 ex.route('/balance/:email').get(retrieveAccountBalanceController.handle.bind(retrieveAccountBalanceController));

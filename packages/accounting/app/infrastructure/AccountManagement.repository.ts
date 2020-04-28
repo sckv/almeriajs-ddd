@@ -1,6 +1,7 @@
+import Knex from 'knex';
+
 import { Account } from '~app/domain/entities/Account.ent';
 import { AccountManagementService } from '~app/domain/services/AccountManagement.service';
-import Knex from 'knex';
 import { Email } from '~app/domain/value-objects/Email.vo';
 
 export class AccountManagementServiceRepository extends AccountManagementService {

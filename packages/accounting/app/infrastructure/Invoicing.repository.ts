@@ -1,5 +1,6 @@
-import { InvoicingService } from '~app/domain/services/Invoicing.service';
 import { Client } from 'ts-nats';
+
+import { InvoicingService } from '~app/domain/services/Invoicing.service';
 
 export class InvoicingServiceRepository extends InvoicingService {
   constructor(nats: Promise<Client>) {

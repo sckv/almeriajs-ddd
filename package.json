@@ -6,6 +6,9 @@
   "author": "Konstantin Knyazev <konstantinknyazev@outlook.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "format": "eslint . --fix --ext ts --ignore-pattern **/node_modules/**"
+  },
   "workspaces": [
     "./packages/accounting",
     "./packages/graphql",

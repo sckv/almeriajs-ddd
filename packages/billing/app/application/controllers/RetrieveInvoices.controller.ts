@@ -1,6 +1,7 @@
 import e from 'express';
 
 import { RetrieveInvoicesQuery } from '../queries/RetrieveInvoices.query';
+
 import { isDomainError } from '~app/tools';
 import { Email } from '~app/domain/value-objects/Email.vo';
 

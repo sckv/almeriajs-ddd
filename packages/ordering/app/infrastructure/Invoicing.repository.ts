@@ -1,4 +1,5 @@
 import { Client } from 'ts-nats';
+
 import { InvoicingService } from '~app/domain/services/Invoicing.service';
 import { DataForInvoice } from '~app/domain/value-objects/InvoiceData.ent';
 

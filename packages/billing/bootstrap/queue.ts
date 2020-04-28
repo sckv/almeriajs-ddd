@@ -1,6 +1,8 @@
-import { nats } from '~external/nats';
 import { Client } from 'ts-nats';
+
 import { createInvoiceHandler, payInvoiceHandler } from './bootstrap';
+
+import { nats } from '~external/nats';
 
 const bootstrapNats = async () => {
   const client = (await nats) as Client;

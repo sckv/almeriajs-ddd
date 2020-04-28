@@ -1,6 +1,7 @@
+import Knex from 'knex';
+
 import { ProductsManagementService } from '~app/domain/services/ProductsManagement.service';
 import { Product } from '~app/domain/entities/Product.ent';
-import Knex from 'knex';
 
 export class ProductsManagementServiceRepository extends ProductsManagementService {
   constructor(database: Knex) {

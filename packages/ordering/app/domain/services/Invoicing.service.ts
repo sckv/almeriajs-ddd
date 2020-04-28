@@ -1,4 +1,5 @@
 import { Client } from 'ts-nats';
+
 import { DataForInvoice } from '../value-objects/InvoiceData.ent';
 
 export abstract class InvoicingService {

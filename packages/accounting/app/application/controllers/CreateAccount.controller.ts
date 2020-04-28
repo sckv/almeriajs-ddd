@@ -1,8 +1,9 @@
 import e from 'express';
 
+import { CreateAccountCommand } from '../commands/CreateAccount.command';
+
 import { isDomainError } from '~app/tools';
 import { Email } from '~app/domain/value-objects/Email.vo';
-import { CreateAccountCommand } from '../commands/CreateAccount.command';
 import { Account } from '~app/domain/entities/Account.ent';
 
 interface Deps {

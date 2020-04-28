@@ -1,6 +1,7 @@
+import Knex from 'knex';
+
 import { Email } from '../value-objects/Email.vo';
 import { Account } from '../entities/Account.ent';
-import Knex from 'knex';
 
 export abstract class AccountManagementService {
   constructor(protected database: Knex) {}

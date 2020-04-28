@@ -1,5 +1,7 @@
-import { ChargePaymentCommand } from '../commands/ChargePayment.command';
 import { Msg } from 'ts-nats';
+
+import { ChargePaymentCommand } from '../commands/ChargePayment.command';
+
 import { Email } from '~app/domain/value-objects/Email.vo';
 
 interface Deps {

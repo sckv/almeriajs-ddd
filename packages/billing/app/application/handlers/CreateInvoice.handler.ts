@@ -1,6 +1,8 @@
-import { CreateInvoiceCommand } from '../commands/CreateInvoice.command';
-import { Invoice } from '~app/domain/entities/Invoice.ent';
 import { Msg } from 'ts-nats';
+
+import { CreateInvoiceCommand } from '../commands/CreateInvoice.command';
+
+import { Invoice } from '~app/domain/entities/Invoice.ent';
 import { Email } from '~app/domain/value-objects/Email.vo';
 
 interface Deps {

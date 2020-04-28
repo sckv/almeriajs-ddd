@@ -1,5 +1,6 @@
-import { PayInvoiceCommand } from '../commands/PayInvoice.command';
 import { Msg } from 'ts-nats';
+
+import { PayInvoiceCommand } from '../commands/PayInvoice.command';
 
 interface Deps {
   payInvoice: PayInvoiceCommand;

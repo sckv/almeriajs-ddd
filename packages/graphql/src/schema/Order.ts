@@ -1,4 +1,5 @@
 import { schemaComposer } from 'graphql-compose';
+
 import { Product } from './Product';
 
 export const Order = schemaComposer.createObjectTC({

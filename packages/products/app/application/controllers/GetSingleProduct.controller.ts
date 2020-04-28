@@ -1,7 +1,8 @@
 import e from 'express';
 
-import { isDomainError } from '~app/tools';
 import { GetSingleProductQuery } from '../queries/GetSingleProduct.query';
+
+import { isDomainError } from '~app/tools';
 
 interface Deps {
   getSingleProduct: GetSingleProductQuery;

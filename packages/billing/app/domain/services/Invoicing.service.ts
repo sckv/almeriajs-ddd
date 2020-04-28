@@ -1,7 +1,8 @@
+import Knex from 'knex';
+
 import { Invoice } from '~app/domain/entities/Invoice.ent';
 import { Email } from '~app/domain/value-objects/Email.vo';
 
-import Knex from 'knex';
 
 export abstract class InvoicingService {
   constructor(protected db: Knex) {}
