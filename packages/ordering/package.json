@@ -1,5 +1,6 @@
 {
   "name": "ordering",
+  "version": "1.0.0",
   "main": "entrypoint.ts",
   "license": "MIT",
   "scripts": {

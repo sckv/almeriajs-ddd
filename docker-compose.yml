@@ -30,6 +30,7 @@ services:
       - local
     volumes:
       - ./packages/accounting:/usr/src/app:delegated
+      - ./node_modules:/usr/src/app/node_modules:delegated
     depends_on:
       - db
     command: 'npm start'
@@ -45,6 +46,7 @@ services:
       - local
     volumes:
       - ./packages/billing:/usr/src/app:delegated
+      - ./node_modules:/usr/src/app/node_modules:delegated
     command: 'npm start'
     env_file:
       - ./.env
@@ -58,6 +60,7 @@ services:
       - local
     volumes:
       - ./packages/ordering:/usr/src/app:delegated
+      - ./node_modules:/usr/src/app/node_modules:delegated
     depends_on:
       - db
     command: 'npm start'
@@ -73,6 +76,7 @@ services:
       - local
     volumes:
       - ./packages/products:/usr/src/app:delegated
+      - ./node_modules:/usr/src/app/node_modules:delegated
     depends_on:
       - db
     command: 'npm start'
@@ -88,6 +92,7 @@ services:
       - local
     volumes:
       - ./packages/graphql:/usr/src/app:delegated
+      - ./node_modules:/usr/src/app/node_modules:delegated
     depends_on:
       - accounting
       - billing

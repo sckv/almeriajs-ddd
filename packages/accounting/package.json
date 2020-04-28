@@ -21,7 +21,6 @@
     "morgan": "^1.10.0",
     "pg": "^8.0.3",
     "ts-nats": "^1.2.12",
-    "ts-node": "^8.9.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3",
