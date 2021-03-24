@@ -1,6 +1,9 @@
 # AlmeriaJS - Introduction DDD
 
-YouTube video of the Meetup with more than 2k views (on Spanish) - https://www.youtube.com/watch?v=pyNNoZoPc0E
+YouTube video of the Meetup with more than 2k views (on Spanish) 
+
+[![DDD AlmeríaJS](https://img.youtube.com/vi/pyNNoZoPc0E/0.jpg)](https://www.youtube.com/watch?v=pyNNoZoPc0E "AlmeríaJS DDD")
+
 
 This project is a very basic example following the Domain Driven Design conventions for the code and services planning.
 
