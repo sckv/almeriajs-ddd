@@ -17,3 +17,5 @@ To try the repo you need `yarn` and `docker` installed. Both of them are obligat
 $ yarn install
 $ docker-compose up
 ```
+
+PS: I do not encourage making this project a production ready example, it is a very basic and oversimplified. To make this project production-ready a lot of conceptual work and coding needs to be done, with polished concepts of DDD principles and deep expertise with the domain experts of the topic, modelling and quite a lot of code vital refactorings.
