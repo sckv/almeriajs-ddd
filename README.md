@@ -1,6 +1,6 @@
 # AlmeriaJS - Introduction DDD
 
-YouTube video of the Meetup with more than 2k views (on Spanish) 
+YouTube video of the Meetup (on Spanish) 
 
 [![DDD AlmeríaJS](https://img.youtube.com/vi/pyNNoZoPc0E/0.jpg)](https://www.youtube.com/watch?v=pyNNoZoPc0E "AlmeríaJS DDD")
 
